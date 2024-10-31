@@ -9,6 +9,16 @@ namespace Datalagring_BankRUs_EFCore.Models
 {
     class Customer
     {
+        public int Id { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
+        public string SocialSecurityNumber { get; protected set; }
+        public Address Address { get; protected set; }
+        public Customer()
+        {
+            
+        }
+
         public Customer(string firstName, string lastName, string socialSecurityNumber, Address address)
         {
             FirstName = firstName;
@@ -16,10 +26,11 @@ namespace Datalagring_BankRUs_EFCore.Models
             SocialSecurityNumber = socialSecurityNumber;
             Address = address;
         }
-
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string SocialSecurityNumber { get; }
-        public Address Address { get; }
+        //public Customer(string firstName, string lastName, string socialSecurityNumber, Address address)
+        //    : this(firstName,lastName,socialSecurityNumber)
+        //{
+        //      Address = address;
+        //}
+       
     }
 }

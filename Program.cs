@@ -1,10 +1,18 @@
-﻿using Datalagring_BankRUs_EFCore.Models;
+﻿using Datalagring_BankRUs_EFCore.Data;
+using Datalagring_BankRUs_EFCore.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
 using static System.Console;
 
 namespace Datalagring_BankRUs_EFCore
 {
-    internal class Program
+    class Program
     {
+        // Vi behöver skapa en instans av DbContext-klassen.
+        static ILoggerFactory MyLoggerFactory = LoggerFactory.Create(DbContextOptionsBuilder => { DbContextOptionsBuilder.AddConsole(); });
+
+        static BankRUsContext context = new BankRUsContext(MyLoggerFactory);
         static void Main(string[] args)
         {
             bool shouldExit = false;
@@ -66,35 +74,31 @@ namespace Datalagring_BankRUs_EFCore
         private static void RegisterCustomer()
         {
             bool isCorrect = false;
+            Customer customer = null;
 
             do
             {
-                Write("Förnamn: ");
+                Clear();
 
+                Write("Förnamn: ");
                 string firstName = ReadLine();
 
                 Write("Efternamn: ");
-
                 string lastName = ReadLine();
 
                 Write("Personnummer: ");
-
                 string socialSecurityNumber = ReadLine();
 
                 Write("Gata: ");
-
                 string street = ReadLine();
 
                 Write("Ort: ");
-
                 string city = ReadLine();
 
                 Write("Postnummer: ");
-
-                string postcode = ReadLine();
+                string postCode = ReadLine();
 
                 WriteLine();
-
                 WriteLine("Är detta korrekt? (J)a eller (N)ej");
 
                 ConsoleKeyInfo keyPressed;
@@ -113,6 +117,24 @@ namespace Datalagring_BankRUs_EFCore
                 if (keyPressed.Key == ConsoleKey.J)
                 {
                     // TODO: Implementera SaveCustomer(customer)
+                    Address address = new Address(street, city, postCode);
+
+                    customer = new Customer(
+                        firstName,
+                        lastName,
+                        socialSecurityNumber,
+                        address
+                        );
+
+                    SaveCustomer(customer);
+
+                    Clear();
+
+                    WriteLine("Kund registrerad");
+
+                    Thread.Sleep(2000);
+
+                    isCorrect = false;
 
                 }
 
@@ -151,6 +173,14 @@ namespace Datalagring_BankRUs_EFCore
         private static void SaveCustomer(Customer customer)
         {
             // TODO: Implementera SaveCustomer()
+            // Vi har vi detta inte sparat ner vår customer ännu.
+            // git add .
+            context.Customer.Add(customer);
+
+            // Det är först när vi anropar SaveChanges() som våra ändringar sparas till
+            // databasen.
+            // git commit ( prata med databasen )
+            context.SaveChanges();
         }
 
         private static void DisplayCustomer()

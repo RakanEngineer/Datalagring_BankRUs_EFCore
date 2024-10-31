@@ -1,0 +1,21 @@
+﻿USE BankRUs
+GO
+​
+
+​
+CREATE TABLE Address
+(
+    Id INT PRIMARY KEY IDENTITY,
+    Street NVARCHAR(50) NOT NULL,
+    City NVARCHAR(50) NOT NULL,
+    Postcode NVARCHAR(50) NOT NULL
+    
+);
+CREATE TABLE Customer
+(
+    Id INT PRIMARY KEY IDENTITY,
+    FirstName NVARCHAR(50) NULL,
+    LastName NVARCHAR(50) NULL,
+    SocialSecurityNumber NVARCHAR(50) NULL,
+    AddressId INT FOREIGN KEY REFERENCES Address (Id)
+)
