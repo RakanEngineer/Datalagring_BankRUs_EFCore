@@ -15,6 +15,8 @@ Föt använde Migrations
 ----------
 Add-Migration AddAccount
 ---------------
+-install-package Microsoft.Extensions.Logging.Console
+-------------------------------
 ﻿CREATE DATABASE BankRUs;
 GO
 ​
