@@ -19,3 +19,30 @@ CREATE TABLE Customer
     SocialSecurityNumber NVARCHAR(50) NULL,
     AddressId INT FOREIGN KEY REFERENCES Address (Id)
 )
+-----------------------------
+one to many
+
+CREATE DATABASE BankRUs;
+GO
+​
+USE BankRUs
+GO
+​
+CREATE TABLE Customer
+(
+    Id INT PRIMARY KEY IDENTITY,
+    FirstName NVARCHAR(50) NULL,
+    LastName NVARCHAR(50) NULL,
+    SocialSecurityNumber NVARCHAR(50) NULL
+)
+​
+CREATE TABLE Address
+(
+    Id INT PRIMARY KEY IDENTITY,
+    Street NVARCHAR(50) NOT NULL,
+    City NVARCHAR(50) NOT NULL,
+    Postcode NVARCHAR(50) NOT NULL,
+    CustomerId INT NOT NULL,
+    CONSTRAINT FK_Address_Customer_Id FOREIGN KEY (CustomerId) 
+        REFERENCES Customer (Id) ON DELETE CASCADE
+);

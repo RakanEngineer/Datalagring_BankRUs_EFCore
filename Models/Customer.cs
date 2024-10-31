@@ -14,23 +14,24 @@ namespace Datalagring_BankRUs_EFCore.Models
         public string LastName { get; protected set; }
         public string SocialSecurityNumber { get; protected set; }
         public Address Address { get; protected set; }
+        public List<Account> Accounts { get; protected set; } = new List<Account>();
+
         public Customer()
         {
             
         }
 
-        public Customer(string firstName, string lastName, string socialSecurityNumber, Address address)
+        public Customer(string firstName, string lastName, string socialSecurityNumber)
         {
             FirstName = firstName;
             LastName = lastName;
             SocialSecurityNumber = socialSecurityNumber;
+        }
+        public Customer(string firstName, string lastName, string socialSecurityNumber, Address address)
+            : this(firstName, lastName, socialSecurityNumber)
+        {
             Address = address;
         }
-        //public Customer(string firstName, string lastName, string socialSecurityNumber, Address address)
-        //    : this(firstName,lastName,socialSecurityNumber)
-        //{
-        //      Address = address;
-        //}
-       
+
     }
 }

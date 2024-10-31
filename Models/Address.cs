@@ -12,8 +12,8 @@ namespace Datalagring_BankRUs_EFCore.Models
         public string Street { get; protected set; }
         public string City { get; protected set; }
         public string Postcode { get; protected set; }
-        //public int CustomerId { get; protected set; }
-        //public Customer Customer { get; protected set; }
+        public int CustomerId { get; protected set; }
+        public Customer Customer { get; protected set; }
 
         public Address(string street, string city, string postcode)
         {

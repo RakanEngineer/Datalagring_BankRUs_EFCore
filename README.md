@@ -1,9 +1,11 @@
 ﻿# Datalagring_BankRUs_EFCore
 
 För att använda Entity Framework Core:
-1-install-package Microsoft.EntityFrameworkCore.SqlServer
-2- Skapa klass som ärver från DbContext (t.ex. BankRUsContext) och sätt connection string.
-
+1- Installera NuGet-paket (beroende):
+-install-package Microsoft.EntityFrameworkCore.SqlServer
+2- Skapa typ som ärver från DbContext samt specificera DbSet för de modeller Entity Framework behöver känna till.
+3- Skapa klass som ärver från DbContext (t.ex. BankRUsContext) och sätt connection string.
+4- DbContext-klass som vi kan använda för att hämta, spara, uppdatera och redera data related till de modeller vi har specificerat med DbSet<>
 ---------------
 ﻿CREATE DATABASE BankRUs;
 GO
