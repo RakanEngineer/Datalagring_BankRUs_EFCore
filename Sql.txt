@@ -46,3 +46,12 @@ CREATE TABLE Address
     CONSTRAINT FK_Address_Customer_Id FOREIGN KEY (CustomerId) 
         REFERENCES Customer (Id) ON DELETE CASCADE
 );
+------------------
+INSERT INTO Customer (FirstName, LastName, SocialSecurityNumber)
+Values ('John','Doe','800909-2010')
+
+INSERT INTO Address(Street, City, Postcode,CustomerId)
+Values ('södergatan2','Göteborg','30303', 1)
+
+
+CREATE UNIQUE INDEX IX_Address_CustomerId ON Address (CustomerId)

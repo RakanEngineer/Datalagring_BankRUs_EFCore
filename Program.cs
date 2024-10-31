@@ -134,7 +134,7 @@ namespace Datalagring_BankRUs_EFCore
 
                     Thread.Sleep(2000);
 
-                    isCorrect = false;
+                    isCorrect = true;
 
                 }
 
@@ -142,7 +142,18 @@ namespace Datalagring_BankRUs_EFCore
 
             } while (!isCorrect);
         }
+        private static void SaveCustomer(Customer customer)
+        {
+            // TODO: Implementera SaveCustomer()
+            // Vi har vi detta inte sparat ner vår customer ännu.
+            // git add .
+            context.Customer.Add(customer);
 
+            // Det är först när vi anropar SaveChanges() som våra ändringar sparas till
+            // databasen.
+            // git commit ( prata med databasen )
+            context.SaveChanges();
+        }
         private static void DisplayCustomers()
         {
             // TODO: Ersätt new List<Customer>() med lista av kunder som 
@@ -192,7 +203,7 @@ namespace Datalagring_BankRUs_EFCore
                 // Vi har en instance/objekt till customer och
                 // den har samling med Accounts och den samling har 
                 // Add metod och vi ta lägga in vår account där. 
-                //customer.Accounts.Add(account);
+                customer.Accounts.Add(account);
 
                 context.SaveChanges();
 
@@ -204,24 +215,12 @@ namespace Datalagring_BankRUs_EFCore
 
                 WriteLine("Kund finns ej");
 
-
             }
 
             Thread.Sleep(2000);
         }
 
-        private static void SaveCustomer(Customer customer)
-        {
-            // TODO: Implementera SaveCustomer()
-            // Vi har vi detta inte sparat ner vår customer ännu.
-            // git add .
-            context.Customer.Add(customer);
-
-            // Det är först när vi anropar SaveChanges() som våra ändringar sparas till
-            // databasen.
-            // git commit ( prata med databasen )
-            context.SaveChanges();
-        }
+       
 
         private static void DisplayCustomer()
         {
@@ -233,7 +232,7 @@ namespace Datalagring_BankRUs_EFCore
             // Här har vi reference till customer från
             // vår context.Customer 
             Customer customer = context.Customer
-                //.Include(x => x.Accounts)
+                .Include(x => x.Accounts)
                 .Include(x => x.Address)
                 .FirstOrDefault(x => x.SocialSecurityNumber == socialSecurityNumber);
 
