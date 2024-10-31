@@ -249,11 +249,11 @@ namespace Datalagring_BankRUs_EFCore
                 WriteLine("Balance");
                 WriteLine("-------------------------------------");
 
-                //foreach (Account account in customer.Accounts)
-                //{
-                //    Write(account.AccountNumber.PadRight(15, ' '));
-                //    WriteLine(account.Balance);
-                //}
+                foreach (Account account in customer.Accounts)
+                {
+                    Write(account.AccountNumber.PadRight(15, ' '));
+                    WriteLine(account.Balance);
+                }
 
                 ReadKey(true);
 
